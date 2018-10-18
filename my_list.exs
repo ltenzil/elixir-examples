@@ -35,13 +35,29 @@ defmodule MyList do
 
     def sq([head | tail]), do: [head * head | sq(tail)]
 
+
+    def map([], _func), do: []
+
+    def map([head | tail], func), do: [func.(head) | map(tail, func)]
+
 end
+
+# Examples
 
 IO.puts(MyList.len([1,3,54]) |> MyList.sq)
 
 IO.puts(MyList.sq([1,3,54]) |> MyList.len)
 
-IO.puts(MyList.len([]))
-IO.puts(MyList.len([1,2,3,0]))
-IO.puts(MyList.sq([2,4,5,0]))
+MyList.len([])
+MyList.len([1,2,3,0])
+
+MyList.sq([2,4,5,0])
+MyList.sq([0])
+MyList.sq([])
+
+MyList.map [1,2,3,4], fn(n) -> n*n end
+MyList.map [1,2,3,4], &(&1*&1)
+MyList.map [1,2,3,4], &(&1-&1)
+MyList.map [1,2,3,4], &(&1+&1)
+
 
