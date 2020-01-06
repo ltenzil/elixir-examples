@@ -1,0 +1,110 @@
+                                                Elixir
+
+Operations on List
+
+list = [:one, 1, 2.0, "asd"]
+
+Appending list is costly, as it needs to check length and append, but prepend is easy.
+
+["appending" | list] # here "appending" is head and list is tail, we create a new list with new head and tail.
+
+Accessing values in list
+
+[:a, :b, :c, :d][2]
+x = [:a, :b, :c, :d]
+x[2]
+=> throws error ((ArgumentError) the Access calls for keywords expect the key to be an atom, got: 1)
+
+As list is not an object, operations are not permitted on it. To fetch values we use Enums.
+
+Enum.at([:a, :b, :c, :d], 2)
+=> :c
+
+Enum.fetch([:a, :b, :c, :d], 2)
+=> {:ok, :c}
+
+Enum.fetch!([:a, :b, :c, :d], 2)
+=> {:ok, :c}
+
+Enum.fetch!([:a, :b, :c, :d], 9)
+=> :error
+
+Enum.at([:a, :b, :c, :d], 9)
+=> nil
+
+To fetch Head (first element in the list)
+hd [3.14, :pie, "Apple"]
+To fetch Tail elements
+tl [3.14, :pie, "Apple"]
+
+
+Tuples
+
+Tuples are ones which are in curly braces {}
+{3.14, :pie, "Apple"}
+
+
+Module Function list and information
+ModuleName = Map
+ModuleName.__info__(:functions) |> Enum.each(fn({function, arity}) ->
+  IO.puts "#{function}/#{arity}"
+end)
+
+
+Enum has over 70 functions and plays a vital role
+
+all?/1, all?/2, any?/1, any?/2, at/2, at/3, chunk/2, chunk/3, chunk/4, chunk_by/2, chunk_every/2, chunk_every/3, chunk_every/4, chunk_while/4, concat/1, concat/2, count/1, count/2, dedup/1, dedup_by/2, drop/2, drop_every/2, drop_while/2, each/2, empty?/1, fetch/2, fetch!/2, filter/2, filter_map/3, find/2, find/3, find_index/2, find_value/2, find_value/3, flat_map/2, flat_map_reduce/3, group_by/2, group_by/3, intersperse/2, into/2, into/3, join/1, join/2, map/2, map_every/3, map_join/2, map_join/3, map_reduce/3, max/1, max/2, max_by/2, max_by/3, member?/2, min/1, min/2, min_by/2, min_by/3, min_max/1, min_max/2, min_max_by/2, min_max_by/3, partition/2, random/1, reduce/2, reduce/3, reduce_while/3, reject/2, reverse/1, reverse/2, reverse_slice/3, scan/2, scan/3, shuffle/1, slice/2, slice/3, sort/1, sort/2, sort_by/2, sort_by/3, split/2, split_while/2, split_with/2, sum/1, take/2, take_every/2, take_random/2, take_while/2, to_list/1, uniq/1, uniq/2, uniq_by/2, unzip/1, with_index/1, with_index/2, zip/1, zip/2, :ok
+
+
+Enum.chunk_every([1, 2, 3, 4, 5, 6], 2)
+[[1, 2], [3, 4], [5, 6]]
+
+Enum.all?([nil]) Enum.all?([])
+false            true
+
+Enum.any?([nil]) Enum.any?([])
+false            false
+
+Enum.map_every([1, 2, 3, 4, 5, 6, 7, 8], 3, fn x -> x + 1000 end)
+[1001, 2, 3, 1004, 5, 6, 1007, 8]
+
+So many functions to use.
+
+Match Operator: Pattern Matching
+
+x = 1
+=> 1
+1 = x
+=> 1
+2 = x
+=> no match of right hand side value: 1
+
+y = 2 => 2
+x = 1 => 1
+y = x => 1
+
+to pattern match here, we use pin operator '^'
+x = 1 => 1
+y = 2 => 2
+^y = x => no match of right hand side value: 1
+
+
+Control Statements
+
+  if and unless
+  case
+  cond
+  with
+
+if and unless
+
+ x = 2
+ if x == 1 do
+  "X is 1"
+ else
+  IO.puts x
+ end
+
+ If it’s necessary to match against multiple patterns we can use CASE
+
+
