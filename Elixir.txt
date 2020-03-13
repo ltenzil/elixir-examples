@@ -108,3 +108,9 @@ if and unless
  If it’s necessary to match against multiple patterns we can use CASE
 
 
+
+
+
+POSTGRES
+
+https://www.postgresqltutorial.com/postgresql-joins/
